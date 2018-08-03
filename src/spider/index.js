@@ -39,7 +39,7 @@ async function fetchEventData(fromBlock) {
                     break;
             }
 
-            const [count] = txInfo
+            const count = Number(txInfo[0])
             const price = getPriceFromData(txInfo)
             const getAddrFromHex = (hex) => `0x${hex.slice(-40)}`
             return {

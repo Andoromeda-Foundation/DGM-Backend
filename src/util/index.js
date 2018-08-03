@@ -26,7 +26,7 @@ function decodeHexedDataNumber(dataHex) {
 
 function getPriceFromData(data) {
     let [tokenQty, ethPaid] = data
-    return (Number(ethPaid) / Number(tokenQty)).toFixed(10)
+    return (Number(ethPaid) / Number(tokenQty))
 }
 
 module.exports = {

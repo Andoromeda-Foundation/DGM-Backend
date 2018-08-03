@@ -5,12 +5,16 @@ const API = 'http://dasdaq-webapi.chinacloudsites.cn'
 
 function sendTransactions(values) {
     logger('sendTransactions', 'OK')
-    return request.post(`${API}/api/Transaction`).send({ values })
+    const payload = { values }
+    console.log(JSON.stringify(payload))
+    return request.post(`${API}/api/Transaction`).send(payload)
 }
 
 function sendCandlestick(values) {
     logger('sendCandlestick', 'OK')
-    return request.post(`${API}/api/Candlestick`).send({ values })
+    const payload = { values }
+    console.log(JSON.stringify(payload))
+    return request.post(`${API}/api/Candlestick`).send(payload)
 }
 
 async function sendTransactionsAndCandlestick({ purchaseHistory, sellHistory }) {
