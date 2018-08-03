@@ -21,7 +21,7 @@ async function sendTransactionsAndCandlestick({ purchaseHistory, sellHistory }) 
         return { catalog, price, utcTime }
     })
     const transactionsData = txs.map(({ method, price, timeStamp, count, user }) => {
-        const catalog = method === "onTokenPurchase" ? 'dgm-buy' : 'dgm-sell'
+        const catalog = method === "onTokenPurchase" ? 'dgm_buy' : 'dgm_sell'
         const utcTime = new Date(timeStamp).toISOString()
         return {
             catalog,
