@@ -13,7 +13,6 @@ function sendTransactions(values) {
 function sendCandlestick(values) {
     logger('sendCandlestick', 'OK')
     const payload = { values }
-    console.log(JSON.stringify(payload))
     return request.post(`${API}/api/Candlestick`).send(payload)
 }
 
