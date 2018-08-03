@@ -1,28 +1,19 @@
-const Koa = require('koa')
-const bodyParser = require("koa-bodyparser")
-// CORS
-const CORS = require("./middleware/cors")
-// Routers
-const { routerRules, allowedMethods } = require("./router")
-// Logger
-const { logger, xResponseTime } = require("./util/logger")
+const { getFilteredTxs } = require('./spider')
+const sender = require('./sender')
+const simpleLogger = require('./util/logger')
 
+const intervalSec = 60
 
-// Start the Koa App
-const app = new Koa()
-// Body Parser and CORS setting
-app.use(bodyParser())
-    .use(CORS)
+function fetchData() {
+    getFilteredTxs().then(({ purchaseHistory, sellHistory }) => {
+        // console.log("purchaseHistory" + JSON.stringify(purchaseHistory))
+        // console.log("sellHistory" + JSON.stringify(sellHistory))
+        simpleLogger('Fetch Event', 'OK')
+        sender({ purchaseHistory, sellHistory })
+            .then(() => {
+                simpleLogger('SEND Data', 'OK')
+            })
+    })
+}
 
-
-// log response-time
-app.use(logger)
-    .use(xResponseTime)
-
-// router
-app.use(routerRules)
-    .use(allowedMethods)
-
-
-const port = '1234'
-app.listen(port)
+setInterval(() => fetchData(), 1000 * intervalSec)

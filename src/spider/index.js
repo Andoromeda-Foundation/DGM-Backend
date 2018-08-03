@@ -3,12 +3,12 @@ const config = require('../config')
 const { decodeHexedDataNumber, blockTimeStamp, getPriceFromData } = require('../util')
 
 
-async function fetchEventData() {
+async function fetchEventData(fromBlock) {
     const url = 'https://api-kovan.etherscan.io/api'
     const { body } = await request.get(url).query({
         module: 'logs'
         , action: 'getLogs'
-        , fromBlock: 0
+        , fromBlock
         , toBlock: 'latest'
         , address: '0xb1129323A3B9f47c8cAC1BADEc67Acab71582f08'
         , apikey: '64AYEBDDFGFM8YBXC2BKQ2P8587PTSF4WR'
@@ -39,33 +39,28 @@ async function fetchEventData() {
                     break;
             }
 
-            // const [tokenQty, ethPaid] = txInfo
+            const [count] = txInfo
             const price = getPriceFromData(txInfo)
+            const getAddrFromHex = (hex) => `0x${hex.slice(-40)}`
             return {
                 transactionHash,
                 method,
+                count,
                 price,
-                timeStamp: blockTimeStamp(timeStamp)
+                timeStamp: blockTimeStamp(timeStamp),
+                user: getAddrFromHex(topics[1]),
             }
         })
     return txsDetail
 }
 
-async function getFilteredTxs() {
-    const txs = await fetchEventData()
+async function getFilteredTxs(fromBlock = 0) {
+    const txs = await fetchEventData(fromBlock)
     const methodFilter = (name) => ({ method }) => method === name
     const purchaseHistory = txs.filter(methodFilter('onTokenPurchase'))
     const sellHistory = txs.filter(methodFilter('onTokenSell'))
     return { purchaseHistory, sellHistory }
 }
-
-getFilteredTxs().then(
-    txs => {
-        const { purchaseHistory, sellHistory } = txs
-        console.log('Purchase History:' + JSON.stringify(purchaseHistory))
-        console.log('Sell History:' + JSON.stringify(sellHistory))
-    }
-)
 
 module.exports = {
     getFilteredTxs
