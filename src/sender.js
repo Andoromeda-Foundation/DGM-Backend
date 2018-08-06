@@ -7,7 +7,6 @@ const API = config.api
 function sendTransactions(values) {
     logger('sendTransactions', 'OK')
     const payload = { values }
-    console.log(JSON.stringify(payload))
     return request.post(`${API}/api/Transaction`).send(payload)
 }
 
