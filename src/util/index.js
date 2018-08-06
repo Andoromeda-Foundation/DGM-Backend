@@ -18,7 +18,6 @@ function decodeHexedDataNumber(dataHex) {
         splitIntoHexArray,
         remove0xPrefix,
     )(dataHex)
-    console.log(result)
     return result
 }
 

@@ -6,8 +6,6 @@ const intervalSec = 60
 
 function fetchData() {
     getFilteredTxs().then(({ purchaseHistory, sellHistory }) => {
-        // console.log("purchaseHistory" + JSON.stringify(purchaseHistory))
-        // console.log("sellHistory" + JSON.stringify(sellHistory))
         simpleLogger('Fetch Event', 'OK')
         sender({ purchaseHistory, sellHistory })
             .then(() => {
