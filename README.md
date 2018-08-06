@@ -6,4 +6,7 @@ Blockchain is transparent and open, we could have lots of open data if the dapp 
 
 ## Run Docker container
 
+> docker run -d --env contract=合约地址 --env network=网络 frankwei98/dgm-worker 
+
+example: 
 > docker run -d --env contract=0xb1129323a3b9f47c8cac1badec67acab71582f08 --env network=kovan frankwei98/dgm-worker 
