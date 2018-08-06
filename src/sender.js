@@ -1,7 +1,8 @@
 const request = require('superagent')
 const logger = require('./util/logger')
+const config = require('../config')
 
-const API = 'http://dasdaq-webapi.chinacloudsites.cn'
+const API = config.api
 
 function sendTransactions(values) {
     logger('sendTransactions', 'OK')

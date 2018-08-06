@@ -1,16 +1,16 @@
 const request = require('superagent')
 const config = require('../config')
 const { decodeHexedDataNumber, blockTimeStamp, getPriceFromData } = require('../util')
-
+const { etherscanAPI, contract } = config
 
 async function fetchEventData(fromBlock) {
-    const url = 'https://api-kovan.etherscan.io/api'
+    const url = `${etherscanAPI}/api`
     const { body } = await request.get(url).query({
         module: 'logs'
         , action: 'getLogs'
         , fromBlock
         , toBlock: 'latest'
-        , address: '0xb1129323A3B9f47c8cAC1BADEc67Acab71582f08'
+        , address: contract
         , apikey: '64AYEBDDFGFM8YBXC2BKQ2P8587PTSF4WR'
     })
     const { status, result } = body

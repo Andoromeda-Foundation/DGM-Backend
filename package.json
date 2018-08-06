@@ -1,8 +1,31 @@
 {
   "dependencies": {
+    "chai": "^4.1.2",
+    "chalk": "^2.4.1",
     "ramda": "^0.25.0",
     "superagent": "^3.8.3",
-    "web3": "^1.0.0-beta.35",
-    "chalk": "^2.4.1"
-  }
+    "web3": "^1.0.0-beta.35"
+  },
+  "name": "token-data-spider",
+  "description": "Cache the blockchain persistent data in our local database play a crucial part in Dapp development. It will be a great help to improve the user experience and the network latency. Blockchain is transparent and open, we could have lots of open data if the dapp gets massive adopted in the future.",
+  "version": "1.0.0",
+  "main": "/src/index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andoromeda-Foundation/DGM-Backend.git"
+  },
+  "keywords": [
+    "DGM",
+    "Spider"
+  ],
+  "author": "Frank Wei <frank@frankwei.xyz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andoromeda-Foundation/DGM-Backend/issues"
+  },
+  "homepage": "https://github.com/Andoromeda-Foundation/DGM-Backend#readme"
 }
