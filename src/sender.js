@@ -1,6 +1,6 @@
 const request = require('superagent')
 const logger = require('./util/logger')
-const config = require('../config')
+const config = require('./config')
 
 const API = config.api
 
